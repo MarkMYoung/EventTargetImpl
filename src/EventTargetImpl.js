@@ -47,14 +47,15 @@ var EventTarget = function()
 	EventTarget.CAPTURING_PHASE = 1;
 	EventTarget.AT_TARGET = 2;
 	EventTarget.BUBBLING_PHASE = 3;
-	var privateListeners = [{'there_is':'no phase 0'}, {}, {}, {}];
+	var privateListeners = [{'there_is_no':'phase 0'}, {}, {}, {}];
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 // NOTE: Normally, adding methods to the 'prototype' is more efficient, but 
 //	EventTarget needs to be "inheritable" without without forcing 
-//	"prototypical inheritance" (Foo.prototype = new EventTarget();).  A class 
+//	"prototypical inheritance" 
+//	(Foo.prototype = Object.create( EventTarget.prototype );).  A class 
 //	"inheriting" EventTarget by calling 'EventTarget.call( this )' also means 
 //	EventTarget cannot make use of "truly private" members.  As a consequence, 
-//	'listeners' is publicly accessible.
+//	'listeners' is a publicly accessible property.
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 	/** Adds a listener callback function.
 	@param type A string specfying the name of the event.
@@ -67,8 +68,10 @@ var EventTarget = function()
 	*/
 	this.addEventListener = function( type, listener, useCapture )
 	{
-		if( EventTarget.is_single_phase === true ){useCapture = undefined;}
-		if( typeof( type ) !== 'string' ){throw TypeError( "EventTarget.addEventListener 'type' must be a string." );}
+		if( EventTarget.is_single_phase === true )
+		{useCapture = undefined;}
+		if( typeof( type ) !== 'string' )
+		{throw TypeError( "EventTarget.addEventListener 'type' must be a string." );}
 		if((listener_type = typeof( listener )) !== 'function' && (listener_type !== 'object' || !('handleEvent' in listener)))
 		{throw TypeError( "EventTarget.addEventListener 'listener' must be a function or be an object or class with a 'handleEvent' method." );}
 		var phase = ((useCapture === true)?(EventTarget.CAPTURING_PHASE)
@@ -88,17 +91,27 @@ var EventTarget = function()
 	this.dispatchEvent = function( evt )
 	{
 		var phases = [EventTarget.CAPTURING_PHASE, EventTarget.AT_TARGET, EventTarget.BUBBLING_PHASE];
-		if( EventTarget.is_single_phase === true ){phases = [EventTarget.AT_TARGET];}
-		if( typeof( evt ) === 'string' ){evt = {'type':evt};}
-		if( typeof( evt.type ) !== 'string' ){throw new TypeError( "Event.type must be a string." );}
-		if( !('target' in evt)){evt.target = this;}
+		if( EventTarget.is_single_phase === true )
+		{phases = [EventTarget.AT_TARGET];}
+		if( typeof( evt ) === 'string' )
+		{evt = {'type':evt};}
+		if( typeof( evt.type ) !== 'string' )
+		{throw new TypeError( "Event.type must be a string." );}
+		if( !('target' in evt))
+		{evt.target = this;}
 		evt.isTrusted = false;
-		if( !('bubbles' in evt)){evt.bubbles = true;}
-		if( !('cancelable' in evt)){evt.cancelable = true;}
-		if( !('defaultPrevented' in evt)){evt.defaultPrevented = false;}
-		if( !('timeStamp') in evt ){evt.timeStamp = (new Date()).getTime();}
-		if( !('eventPhase' in evt)){evt.eventPhase = null;}
-		if( !('currentTarget' in evt)){evt.currentTarget = null;}
+		if( !('bubbles' in evt))
+		{evt.bubbles = true;}
+		if( !('cancelable' in evt))
+		{evt.cancelable = true;}
+		if( !('defaultPrevented' in evt))
+		{evt.defaultPrevented = false;}
+		if( !('timeStamp') in evt )
+		{evt.timeStamp = (new Date()).getTime();}
+		if( !('eventPhase' in evt))
+		{evt.eventPhase = null;}
+		if( !('currentTarget' in evt))
+		{evt.currentTarget = null;}
 		if( typeof( evt.preventDefault ) !== 'function' )
 		{
 			evt.preventDefault = function()
@@ -132,7 +145,8 @@ var EventTarget = function()
 	*/
 	this.removeEventListener = function( type, listener, useCapture )
 	{
-		if( EventTarget.is_single_phase === true ){useCapture = undefined;}
+		if( EventTarget.is_single_phase === true )
+		{useCapture = undefined;}
 		var found = false;
 		var phase = ((useCapture === true)?(EventTarget.CAPTURING_PHASE)
 			:((useCapture === false)?(EventTarget.BUBBLING_PHASE)
@@ -151,7 +165,7 @@ var EventTarget = function()
 		return( found );
 	};
 };
-EventTarget.prototype = new Object();
+EventTarget.prototype = Object.create( Object.prototype );
 EventTarget.prototype.constructor = EventTarget;
 return( EventTarget );
 })();
