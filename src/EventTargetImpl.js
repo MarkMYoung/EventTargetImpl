@@ -151,7 +151,7 @@ var EventTarget = function()
 		return( found );
 	};
 };
-EventTarget.prototype = new Object();
+EventTarget.prototype = Object.create( Object.prototype );
 EventTarget.prototype.constructor = EventTarget;
 return( EventTarget );
 })();

@@ -4,26 +4,29 @@ In short, all browsers provide an EventTarget implementation attached to DOM nod
 
 One can use this by containment,
 ```javascript
-function YourEventfulClass()
+function YourEventContainingClass()
 {
   var eventTarget = new EventTarget();
 }
-YourEventfulClass.prototype = new Object();
-YourEventfulClass.prototype.constructor = YourEventfulClass;
+YourEventContainingClass.prototype = Object.create( Object );
+YourEventContainingClass.prototype.constructor = YourEventContainingClass;
 ```
 by interface extension,
 ```javascript
-function YourEventingClass()
+function YourEventExtendedClass()
 {
   EventTarget.call( this );
 }
-YourEventingClass.prototype = new Object();
-YourEventingClass.prototype.constructor = YourEventingClass;
+YourEventExtendedClass.prototype = Object.create( Object );
+YourEventExtendedClass.prototype.constructor = YourEventExtendedClass;
 ```
 or by prototypical inheritance.
 ```javascript
-function YourEventsomeClass()
+function YourEventInheritingClass()
 {}
-YourEventsomeClass.prototype = new EventTargetImpl();
-YourEventsomeClass.prototype.constructor = YourEventsomeClass;
+YourEventInheritingClass.prototype = Object.create( EventTargetImpl );
+YourEventInheritingClass.prototype.constructor = YourEventInheritingClass;
 ```
+
+[//]: # ( ### TravisCI )
+[//]: # ( [![Build Status](https://travis-ci.com/MarkMYoung/EventTargetImpl.svg?branch=master)](https://travis-ci.com/MarkMYoung/EventTargetImpl) )

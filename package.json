@@ -1,0 +1,30 @@
+{
+	"name":"EventTargetImpl",
+	"description":"A full implementation of 'EventTarget' DOM interface that can be used anywhere.",
+	"version":"1.0.0",
+
+	"author":"Mark M. Young",
+	"contributors": ["Corey Perkins"],
+	"dependencies":{},
+	"devDependencies":
+	{
+		"qunit":"~1.0.0"
+	},
+	"keywords":
+	[
+		"ajax",
+		"database",
+		"storage"
+	],
+	"license":"GPL-3.0",
+	"main":"tests/tests.html",
+	"repository":
+	{
+		"type":"git",
+		"url":"git://github.com/agconnections/UnitConverter_JavaScript.git"
+	},
+  	"scripts":
+	{
+		"test":"node test/NodeJS.test_config.js"
+	}
+}

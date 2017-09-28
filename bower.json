@@ -1,0 +1,34 @@
+{
+	"name":"EventTargetImpl",
+	"description":"A full implementation of 'EventTarget' DOM interface that can be used anywhere.",
+
+	"authors":["Mark M. Young"],
+	"dependencies":{},
+	"devDependencies":
+	{
+		"qunit":"~1.0.0"
+	},
+	"ignore":
+	[
+		"**/.*",
+		"bower_components",
+		"node_modules",
+		"_notes"
+	],
+	"keywords":
+	[
+		"ajax",
+		"database",
+		"storage"
+	],
+	"license":"GPL-3.0",
+	"main":
+	[
+		"test/index.html"
+	],
+	"moduleType":
+	[
+		"globals"
+	],
+	"private":true
+}

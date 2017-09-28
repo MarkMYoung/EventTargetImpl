@@ -1,0 +1,20 @@
+sudo: required  
+dist: trusty  
+
+language: node_js
+node_js:
+  - "node"
+  - "7"
+#install:
+#  - "npm intall"
+before_script:
+  - "git submodule foreach --recursive git submodule update --init"
+#  - "export CHROME_BIN=/usr/bin/google-chrome"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+#  - "sudo apt-get update"
+#  - "sudo apt-get install -y libappindicator1 fonts-liberation"
+#  - "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+#  - "sudo dpkg -i google-chrome*.deb"
+#  - "rm google-chrome*.deb"
+  - "phantomjs test/PhantomJS.test_config.js"
