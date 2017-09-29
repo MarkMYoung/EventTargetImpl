@@ -1,3 +1,0 @@
-[submodule "dep/qunit"]
-	path = dep/qunit
-	url = https://github.com/qunitjs/qunit.git

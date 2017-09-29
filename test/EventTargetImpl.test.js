@@ -1,5 +1,5 @@
-$(document).ready( function()
-{
+//jQuery(document).ready( function()
+//{
 	QUnit.module( "EventTargetImpl" );
 	QUnit.test( "Constructor(s)", function( qUnit )
 	{
@@ -88,4 +88,4 @@ $(document).ready( function()
 		eventTarget.dispatchEvent( 'action' );
 		anObject.dispatchEvent( 'action' );
 	});
-});
+//});
