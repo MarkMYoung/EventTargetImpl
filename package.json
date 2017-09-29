@@ -17,7 +17,7 @@
 		"storage"
 	],
 	"license":"GPL-3.0",
-	"main":"tests/tests.html",
+	"main":"src/EventTargetImpl.js",
 	"repository":
 	{
 		"type":"git",
